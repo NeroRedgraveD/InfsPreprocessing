@@ -26,7 +26,7 @@ def ArrivalTimeValues(obs_place, vol_place):
     return tropo_arrival_time, strato_arrival_time, themo_arrival_time
 
 def main():
-    fpath = "../Infs/Kirisimayama_Shinmoedake_20180310/infs_Kuroshiotyou_Kamikawaguti.csv"
+    fpath = "../Infs/Kirisimayama_Shinmoedake_20180310/infs_Areaxx_Sitexx.csv"
     fname = fpath.split("/")[-1].split(".")[0]
     vol_place = "Sakurazima_Ontake"
     obs_place = fname.split("_")[1] + "_" + fname.split("_")[2]

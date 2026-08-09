@@ -1,11 +1,21 @@
 #!/bin/sh
 
+# The observation-site folder names are the site names themselves, so they are not
+# kept in this repository. Put them in script/place_names.txt (one per line);
+# the file is gitignored and must be supplied alongside the data.
+script_dir=`cd \`dirname "$0"\` && pwd`
+place_names_file="${script_dir}/place_names.txt"
+if [ ! -f "${place_names_file}" ]; then
+  echo "error: ${place_names_file} not found (one observation-site folder name per line)" 1>&2
+  exit 1
+fi
+
 cd ../supervise_data/
 mag_folder_list=(`ls -d *`)
 for folder in ${mag_folder_list[@]}
 do
   #make place folder
-  place_names=(Akishi_Nishihama Touyoutyou_Ikumi Murotoshi_Murotomisakityou Kounanshi_Yasutyou_temusubi Kamishi_Tosayamadatyou_Miyanokuti Nangokushi_Monobe Koutishi_Harunotyou_Yoshihara Tosashi_Usatyou_Usa Kuroshiotyou_Kamikawaguti Kuroshiotyou_Ninagawa Kuroshiotyou_Ukibuti Kuroshiotyou_Deguti Kuroshiotyou_Umani Tosashimizushi_Ashizurimisaki1 Tosashimizushi_Ashizurimisaki2 Tosashimizushi_Ashizurimisaki3 Sukumoshi_Kodukushityou)
+  place_names=(`cat "${place_names_file}"`)
   rm -r ${folder}/supervise_label_1
   mkdir ${folder}/supervise_label_1
   cd ${folder}/supervise_label_1/
